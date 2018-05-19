@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+	<context:annotation-config />
+
+	<!-- PROPERTY LOADER -->
+	<beans:bean id="propertyPlaceholderConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<beans:property name="ignoreUnresolvablePlaceholders"
+			value="true" />
+		<beans:property name="locations">
+			<beans:list>
+				<beans:value>
+					classpath:hbs.properties
+				</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Configure to plugin JSON as request and response in method handler -->
+	<beans:bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<beans:property name="messageConverters">
+			<beans:list>
+				<beans:ref bean="jsonMessageConverter" />
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<beans:property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+	<!-- Configure bean to convert JSON to POJO and vice versa -->
+	<beans:bean id="jsonMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+	</beans:bean>
+
+	<context:component-scan base-package="com.ahcareer.hbs" />
+	<!-- DATASOURCE -->
+	<beans:bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<beans:property name="driverClassName" value="${hbs.db.driver.name}" />
+		<beans:property name="url" value="${hbs.db.url}" />
+		<beans:property name="username" value="${hbs.db.user}" />
+		<beans:property name="password" value="${hbs.db.password}" />
+	</beans:bean>
+
+	<!-- TRANSACTION MANAGER -->
+	<beans:bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<beans:property name="sessionFactory" ref="sessionFactory" />
+	</beans:bean>
+	<tx:annotation-driven />
+
+	<!-- TRANSACTION FACTORY -->
+	<beans:bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource" />
+		<beans:property name="packagesToScan" value="com.ahcareer.hbs.persistance" />
+		<beans:property name="hibernateProperties">
+			<beans:props>
+				<beans:prop key="hibernate.dialect">
+					${db.dialect}
+				</beans:prop>
+				<beans:prop key="hibernate.show_sql">
+					${db.show.sql}
+				</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+</beans:beans>

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html style="background-color: #e8eaed;color: #333;font-size: 13px;margin: 0px;padding: 0px;">
+    <head>
+        <title>Tickets Status Update</title>
+    </head>
+    <body style="font-family:Helvetica, arial, sans-serif; max-width: 800px;margin: 0 auto;background-color:#FFFFFF;">
+    	<div style="padding:10px; padding-top:0px;">
+    	<div style="background-color:#25476a;color:#fff; text-align:left; padding:20px; font-size:14px; left:0; top:0; right:0; margin-bottom:10px;">Sparc Tickets Counts</div>
+        <div style="padding: 20px;">
+         <table cellspacing="0" cellpadding="8" style="border: 1px solid #dddddd; border-bottom:0px; text-align:center; width:100%;">
+        	<tr>
+            	<th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px; width:10%;text-align:center;">New</th>
+                <th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px;width:15%;text-align:center;">Open</th>
+                <th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px;width:15%;text-align:center;">Assigned</th>
+                <th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px;width:15%;text-align:center;">Work In Progress</th>
+                <th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px;width:15%;text-align:center;">On Hold</th>
+                <th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px;width:15%;text-align:center;">Resolved</th>
+                <th style="border-bottom: 1px solid #dddddd; text-align:left; text-transform:uppercase; background:#F7F7F7;">Closed</th>
+            </tr>	
+            <tr>
+                <td style="border-bottom: 1px solid #dddddd; border-right: 1px solid #dddddd;width:10%; ">
+                    <div style="min-min-width:25px; padding:1px 10px;  text-align:center; line-height:20px; margin-right:5px; border-radius:6em; margin:0 auto;display: inline-block;">${STATUS_COUNTS.New}</div>
+                </td>
+                <td style="border-bottom: 1px solid #dddddd;border-right: 1px solid #dddddd;width:10%">
+                    <div style="min-min-width:25px; padding:1px 10px;  text-align:center; line-height:20px; margin-right:5px; border-radius:6em; margin:0 auto;display: inline-block;">${STATUS_COUNTS.Open}</div>
+                </td>
+                <td style="border-bottom: 1px solid #dddddd;border-right: 1px solid #dddddd;width:15%">
+                    <div style="min-min-width:25px; padding:1px 10px;  text-align:center; line-height:20px; margin-right:5px; border-radius:6em; margin:0 auto;display: inline-block;">${STATUS_COUNTS.Assigned}</div>
+                </td>
+                <td style="border-bottom: 1px solid #dddddd;border-right: 1px solid #dddddd; width:25%">
+                    <div style="min-min-width:25px; padding:1px 10px;  text-align:center; line-height:20px; margin-right:5px; border-radius:6em; margin:0 auto;display: inline-block;">${STATUS_COUNTS.WorkinProgress}</div>
+                </td>
+                <td style="border-bottom: 1px solid #dddddd;border-right: 1px solid #dddddd;width:10%">
+                    <div style="min-min-width:25px; padding:1px 10px;  text-align:center; line-height:20px; margin-right:5px; border-radius:6em; margin:0 auto;display: inline-block;">${STATUS_COUNTS.OnHold}</div>
+                </td>
+                <td style="border-bottom: 1px solid #dddddd;border-right: 1px solid #dddddd;width:15%">
+                    <div style="min-min-width:25px; padding:1px 10px;  text-align:center; line-height:20px; margin-right:5px; border-radius:6em; margin:0 auto;display: inline-block;">${STATUS_COUNTS.Resolved}</div>
+                </td>
+                <td style="border-bottom: 1px solid #dddddd;border-right: 1px solid #dddddd;width:15%">
+                    <div style="min-min-width:25px; padding:1px 10px;  text-align:center; line-height:20px; margin-right:5px; border-radius:6em; margin:0 auto;display: inline-block;">${STATUS_COUNTS.Closed}</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+   <div style="background-color:#25476a;color:#fff; text-align:left; padding:20px; font-size:14px; left:0; top:0; right:0; margin-bottom:10px;">Sparc Incidents Counts</div>
+    <div style="padding: 20px;">
+         <table cellspacing="0" cellpadding="8" style="border: 1px solid #dddddd; border-bottom:0px; text-align:center; width:100%;">
+        	<tr>
+            	<th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px; width:10%;text-align:center;">New</th>
+                <th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px;width:15%;text-align:center;">Open</th>
+                <th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px;width:15%;text-align:center;">Assigned</th>
+                <th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px;width:15%;text-align:center;">Work In Progress</th>
+                <th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px;width:15%;text-align:center;">On Hold</th>
+                <th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px;width:15%;text-align:center;">Resolved</th>
+                <th style="border-bottom: 1px solid #dddddd; text-align:left; text-transform:uppercase; background:#F7F7F7;">Closed</th>
+            </tr>	
+            <tr>
+                <td style="border-bottom: 1px solid #dddddd; border-right: 1px solid #dddddd;width:10%; ">
+                    <div style="min-min-width:25px; padding:1px 10px;  text-align:center; line-height:20px; margin-right:5px; border-radius:6em; margin:0 auto;display: inline-block;">${INCIDENTS_STATUS_COUNTS.New}</div>
+                </td>
+                <td style="border-bottom: 1px solid #dddddd;border-right: 1px solid #dddddd;width:10%">
+                    <div style="min-min-width:25px; padding:1px 10px;  text-align:center; line-height:20px; margin-right:5px; border-radius:6em; margin:0 auto;display: inline-block;">${INCIDENTS_STATUS_COUNTS.Open}</div>
+                </td>
+                <td style="border-bottom: 1px solid #dddddd;border-right: 1px solid #dddddd;width:15%">
+                    <div style="min-min-width:25px; padding:1px 10px;  text-align:center; line-height:20px; margin-right:5px; border-radius:6em; margin:0 auto;display: inline-block;">${INCIDENTS_STATUS_COUNTS.Assigned}</div>
+                </td>
+                <td style="border-bottom: 1px solid #dddddd;border-right: 1px solid #dddddd; width:25%">
+                    <div style="min-min-width:25px; padding:1px 10px;  text-align:center; line-height:20px; margin-right:5px; border-radius:6em; margin:0 auto;display: inline-block;">${INCIDENTS_STATUS_COUNTS.WorkinProgress}</div>
+                </td>
+                <td style="border-bottom: 1px solid #dddddd;border-right: 1px solid #dddddd;width:10%">
+                    <div style="min-min-width:25px; padding:1px 10px;  text-align:center; line-height:20px; margin-right:5px; border-radius:6em; margin:0 auto;display: inline-block;">${INCIDENTS_STATUS_COUNTS.OnHold}</div>
+                </td>
+                <td style="border-bottom: 1px solid #dddddd;border-right: 1px solid #dddddd;width:15%">
+                    <div style="min-min-width:25px; padding:1px 10px;  text-align:center; line-height:20px; margin-right:5px; border-radius:6em; margin:0 auto;display: inline-block;">${INCIDENTS_STATUS_COUNTS.Resolved}</div>
+                </td>
+                <td style="border-bottom: 1px solid #dddddd;border-right: 1px solid #dddddd;width:15%">
+                    <div style="min-min-width:25px; padding:1px 10px;  text-align:center; line-height:20px; margin-right:5px; border-radius:6em; margin:0 auto;display: inline-block;">${INCIDENTS_STATUS_COUNTS.Closed}</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    	<div style="padding: 20px;">
+        <table width="100%" cellspacing="0" cellpadding="8"	style="border: 1px solid #dddddd; border-bottom:0px;">
+        	<tr>
+            	<th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px;">Number</th>
+                <th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px;">Created Date</th>
+                <th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px;">Assigned Group</th>
+                <th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px;">Assigned To</th>
+                <th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px;">Priority</th>
+                <th style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align:left;text-transform:uppercase; background:#F7F7F7; line-height:25px;">State</th>
+                <th style="border-bottom: 1px solid #dddddd; text-align:left; text-transform:uppercase; background:#F7F7F7;">Diff Days</th>
+            </tr>
+           #foreach( $SPARK_TAKS in  ${SPARK_TAKS_DETAILS})
+	            <tr>
+	                <td style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd;">
+	                    <font size="2" align="center" style="">${SPARK_TAKS.number}</font>
+	                </td>
+	                <td style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd;">
+	                    <font size="2" align="center" style="">${SPARK_TAKS.taskCreatedDate}</font>
+	                </td>
+	                <td style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd;">
+	                    <font size="2" align="center" style="">${SPARK_TAKS.assignedGroup}</font>
+	                </td>
+	                <td style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd;">
+	                    <font size="2" align="center" style="">${SPARK_TAKS.assignedTo}</font>
+	                </td>
+	                <td style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd;">
+	                    <font size="2" align="center" style="">${SPARK_TAKS.displayPriority}</font>
+	                </td>
+	                <td style="border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd;">
+	                    <font size="2" align="center" style="">${SPARK_TAKS.taskState}</font>
+	                </td>
+	                <td style="border-bottom: 1px solid #dddddd;">
+	                    <div style="min-min-width:25px; padding:1px 10px;  text-align:center; line-height:20px; margin-right:5px; border-radius:6em;  background:${SPARK_TAKS.colorCode};color:#fff; float:left;">${SPARK_TAKS.diffDays}</div>    
+	                </td>
+	            </tr>
+            #end
+        </table>
+		<br /><br />
+		 <b> The above list is partial list. To view complete list please </b> <a href="${GET_ALL_TASK_DETAILS_URL}" >Click here</>
+    </div>
+    </div>
+</body></html>

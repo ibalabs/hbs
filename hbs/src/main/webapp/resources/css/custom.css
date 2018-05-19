@@ -1,0 +1,50 @@
+.dataTables_wrapper {
+	padding: 5px;
+	background: #fff;
+	border: 1px solid #e6e8e8;
+}
+
+div.dataTables_info {
+	padding-bottom: 8px !important;
+}
+
+div.dataTables_paginate {
+	float: right;
+	margin: 0;
+	position: absolute;
+	bottom: 9px;
+	right: 20px;
+}
+
+.data-table-container {
+	position: relative;
+}
+
+.table-btn-container {
+	position: absolute;
+	right: 200px;
+	top: 5px;
+}
+
+.table-btn-container .btn {
+	padding: 5px 12px;
+}
+
+.modal-content {
+	background: #fff;
+	box-shadow: none;
+}
+
+.modal-footer {
+	border-top: 1px solid #e5e5e5 !important;
+}
+
+.modal-footer, .modal-header {
+	border-color: #e5e5e5 !important;
+}
+
+@media (min-width: 992px) {
+.modal-xx-lg {
+    width: 90%;
+}
+}
