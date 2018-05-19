@@ -144,7 +144,132 @@ public class HbsController extends AbstractController {
     this.logger.info("INSIDE SHOW DASHBOARD.....");
     return new ModelAndView(ViewNameEnum.SHOW_DASHBOARD_VIEW.getViewName(),
         new HashMap<>());
-  } 
+  }
+
+  /**
+   * Show UOM
+   * 
+   * @return
+   */
+  @RequestMapping(value = Constants.SHOW_UOM_VIEW, method = RequestMethod.GET)
+  public ModelAndView showUom(HttpServletRequest httpServletRequest) {
+    this.logger.info("INSIDE SHOW SHOW_UOM_VIEW.....");
+    return new ModelAndView(ViewNameEnum.SHOW_UOM_VIEW.getViewName(),
+        new HashMap<>());
+  }
+
+  /**
+   * Show Products
+   * 
+   * @return
+   */
+  @RequestMapping(value = Constants.SHOW_PRODUCTS_VIEW, method = RequestMethod.GET)
+  public ModelAndView showProducts(HttpServletRequest httpServletRequest) {
+    this.logger.info("INSIDE SHOW SHOW_PRODUCTS_VIEW.....");
+    return new ModelAndView(ViewNameEnum.SHOW_PRODUCTS_VIEW.getViewName(),
+        new HashMap<>());
+  }
+
+  /**
+   * Show Customers
+   * 
+   * @return
+   */
+  @RequestMapping(value = Constants.SHOW_CUSTOMERS_VIEW, method = RequestMethod.GET)
+  public ModelAndView showCustomers(HttpServletRequest httpServletRequest) {
+    this.logger.info("INSIDE SHOW SHOW_PRODUCTS_VIEW.....");
+    return new ModelAndView(ViewNameEnum.SHOW_CUSTOMERS_VIEW.getViewName(),
+        new HashMap<>());
+  }
+
+  /**
+   * Show Sales Invoice
+   * 
+   * @return
+   */
+  @RequestMapping(value = Constants.SHOW_SALES_INVOICE_VIEW, method = RequestMethod.GET)
+  public ModelAndView showSalesInvoice(HttpServletRequest httpServletRequest) {
+    this.logger.info("INSIDE SHOW SHOW_SALES_INVOICE_VIEW.....");
+    return new ModelAndView(ViewNameEnum.SHOW_SALES_INVOICE_VIEW.getViewName(),
+        new HashMap<>());
+  }
+
+  /**
+   * Show Receipts
+   * 
+   * @return
+   */
+  @RequestMapping(value = Constants.SHOW_RECEIPTS_VIEW, method = RequestMethod.GET)
+  public ModelAndView showReceipts(HttpServletRequest httpServletRequest) {
+    this.logger.info("INSIDE SHOW SHOW_SALES_INVOICE_VIEW.....");
+    return new ModelAndView(ViewNameEnum.SHOW_RECEIPTS_VIEW.getViewName(),
+        new HashMap<>());
+  }
+
+  /**
+   * Show Total Due List
+   * 
+   * @return
+   */
+  @RequestMapping(value = Constants.SHOW_TOTAL_DUE_LIST_VIEW, method = RequestMethod.GET)
+  public ModelAndView showTotalDueList(HttpServletRequest httpServletRequest) {
+    this.logger.info("INSIDE SHOW SHOW_TOTAL_DUE_LIST_VIEW.....");
+    return new ModelAndView(ViewNameEnum.SHOW_TOTALDUELIST_VIEW.getViewName(),
+        new HashMap<>());
+  }
+
+  /**
+   * Show Customer Reports
+   * 
+   * @return
+   */
+  @RequestMapping(value = Constants.SHOW_CUSTOMER_REPORTS_VIEW, method = RequestMethod.GET)
+  public ModelAndView showCustomerReports(
+      HttpServletRequest httpServletRequest) {
+    this.logger.info("INSIDE SHOW SHOW_CUSTOMER_REPORTS_VIEW.....");
+    return new ModelAndView(
+        ViewNameEnum.SHOW_CUSTOMER_REPORTS_VIEW.getViewName(), new HashMap<>());
+  }
+
+  /**
+   * Show Product Reports
+   * 
+   * @return
+   */
+  @RequestMapping(value = Constants.SHOW_PRODUCT_REPORTS_VIEW, method = RequestMethod.GET)
+  public ModelAndView showProductReports(
+      HttpServletRequest httpServletRequest) {
+    this.logger.info("INSIDE SHOW SHOW_PRODUCT_REPORTS_VIEW.....");
+    return new ModelAndView(
+        ViewNameEnum.SHOW_PRODUCT_REPORTS_VIEW.getViewName(), new HashMap<>());
+  }
+
+  /**
+   * Show Referral Reports
+   * 
+   * @return
+   */
+  @RequestMapping(value = Constants.SHOW_REFERRAL_REPORTS_VIEW, method = RequestMethod.GET)
+  public ModelAndView showReferralReports(
+      HttpServletRequest httpServletRequest) {
+    this.logger.info("INSIDE SHOW SHOW_REFERRAL_REPORTS_VIEW.....");
+    return new ModelAndView(
+        ViewNameEnum.SHOW_REFERRAL_REPORTS_VIEW.getViewName(), new HashMap<>());
+  }
+
+  /**
+   * Show Product Cost Reports
+   * 
+   * @return
+   */
+  @RequestMapping(value = Constants.SHOW_PRODUCT_COST_REPORTS_VIEW, method = RequestMethod.GET)
+  public ModelAndView showProductCostReports(
+      HttpServletRequest httpServletRequest) {
+    this.logger.info("INSIDE SHOW SHOW_PRODUCT_COST_REPORTS_VIEW.....");
+    return new ModelAndView(
+        ViewNameEnum.SHOW_PRODUCT_COST_REPORTS_VIEW.getViewName(),
+        new HashMap<>());
+  }
 
   /**
    * init
