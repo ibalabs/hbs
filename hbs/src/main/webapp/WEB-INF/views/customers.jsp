@@ -73,7 +73,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">Add Customer</h4>
+					<h4 class="modal-title" id="myModalLabel"><span id="ID_TITLE"></span></h4>
 				</div>
 				<div class="modal-body">
 					<fieldset>
@@ -163,6 +163,7 @@
 			document.getElementById("ID_CUSTOMER_ADDRESS").value = "";
 			document.getElementById("ID_CUSTOMER_ALIAS").value = "";
 			document.getElementById("ID_DB_ID").value = "";
+			document.getElementById("ID_TITLE").innerHTML = "Add New Customer Details";
 			$('#ID_SAVE_CUSTOMER_MODEL').modal('show');
 		}
 	
@@ -264,6 +265,7 @@
 					document.getElementById("ID_CUSTOMER_CITY").value = data.CUSTOMER_DETAILS.city;
 					document.getElementById("ID_CUSTOMER_ADDRESS").value = data.CUSTOMER_DETAILS.address;
 					document.getElementById("ID_CUSTOMER_ALIAS").value = data.CUSTOMER_DETAILS.alias;
+					document.getElementById("ID_TITLE").innerHTML = data.CUSTOMER_DETAILS.customerName + " Update UoM Details";
 				}
 			}).fail(function(jqxhr, textStatus, errorThrown) {
 				alert("..jqxhr2.."+JSON.stringify(jqxhr));

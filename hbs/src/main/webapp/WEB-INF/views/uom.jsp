@@ -70,7 +70,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">Add UOM</h4>
+					<h4 class="modal-title" id="myModalLabel"><span id="ID_TITLE"></span></h4>
 				</div>
 				<div class="modal-body">
 					<fieldset>
@@ -123,6 +123,7 @@
 			document.getElementById("ID_UOM_NAME").value = "";
 			document.getElementById("ID_UOM_DESC").value = "";
 			document.getElementById("ID_UOM_DB_ID").value = "";
+			document.getElementById("ID_TITLE").innerHTML = "Add New UoM";
 			$('#ID_SAVE_UOM_MODEL').modal('show');
 		}
 	
@@ -166,6 +167,7 @@
 	            $('table#ID_UOM_DETAILS_TABLE TBODY').find("tr").remove();
 	   	    	$.each(data.UOM_DETAILS,function(index, uomDetails){
 	   	    			var id = uomDetails['id'];
+	   	    			var uomName =  uomDetails['uomName'];
 		    	 		$('table#ID_UOM_DETAILS_TABLE TBODY').append('<tr>'
 		    			+'<td width="25%">'+uomDetails['uomId']+'</td>'
 		    			+'<td width="25%">'+uomDetails['uomName']+'</td>'
@@ -212,6 +214,7 @@
 					document.getElementById("ID_UOM_ID").value = data.UOM_DETAILS.uomId;
 					document.getElementById("ID_UOM_NAME").value = data.UOM_DETAILS.uomName;
 					document.getElementById("ID_UOM_DESC").value = data.UOM_DETAILS.uomDesc;
+					document.getElementById("ID_TITLE").innerHTML = data.UOM_DETAILS.uomName + " Update UoM Details";
 				}
 			}).fail(function(jqxhr, textStatus, errorThrown) {
 				alert("..jqxhr2.."+JSON.stringify(jqxhr));
