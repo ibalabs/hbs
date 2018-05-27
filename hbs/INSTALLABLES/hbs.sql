@@ -26,9 +26,9 @@ ALTER TABLE hbs_product_master ADD FOREIGN KEY (uom_id) REFERENCES hbs_unit_of_m
 
 CREATE TABLE hbs_customer_master(
 id 					VARCHAR(100) 	NOT NULL PRIMARY KEY 
-,customer_name		VARCHAR(100) 	NOT NULL
+,customer_name		VARCHAR(100) 	NOT NULL UNIQUE
 ,alias 				VARCHAR(100) 	NULL
-,address 			VARCHAR(100) 	NULL
+,address 			VARCHAR(5000) 	NULL
 ,city 				VARCHAR(100) 	NULL
 ,mobile 			VARCHAR(100) 	NULL
 ,balance_amount 	VARCHAR(100) 	NULL

@@ -27,6 +27,10 @@ public interface Constants {
   String SAVE_UOM = "/saveUom.html";
   String FETCH_ALL_UOM_DETAILS = "/fetchAllUomDetails.html";
   String EDIT_UOM_DETAILS = "/editUomDetails.html";
+  String SAVE_CUSTOMER_DETAILS = "/saveCustomerDetails.html";
+  String FETCH_ALL_CUSTOMER_DETAILS = "/fetchAllCustomerDetails.html";
+  String EDIT_CUSTOMER_DETAILS = "/editCustomerDetails.html";
+  String DELETE_CUSTOMER_DETAILS = "/deteleCustomerDetails.html";
 
   String USER_NAME = "userName";
   String FIRST_NAME = "firstName";
@@ -42,11 +46,20 @@ public interface Constants {
   String UOM_DESC = "uomDesc";
   String UOM_ID = "uomId";
   String ACTION = "action";
-  String ID_UOM_DB_ID = "dbId";
+  String ID_DB_ID = "dbId";
   String UOM_DETAILS = "UOM_DETAILS";
   String STATUS = "status";
   String SUCCESS = "SUCCESS";
   String ERROR = "ERROR";
   String CREATE = "CREATE";
   String UPDATE = "UPDATE";
+  String CUST_NAME = "custName";
+  String CUST_DESC = "custDesc";
+  String MOBILE = "mobile";
+  String CITY = "city";
+  String BAL_AMT = "balAmt";
+  String ALIAS = "alias";
+  String ADDRESS = "address";
+  String CUSTOMER_DETAILS = "CUSTOMER_DETAILS";
+  String MESSAGE = "message";
 }

@@ -31,4 +31,44 @@ public abstract class AbstractService {
   public String getId() {
     return UUID.randomUUID().toString();
   }
+
+  /**
+   * Validate Customer Details
+   * 
+   * @param custDesc
+   * @param custName
+   * @param address
+   * @param mobile
+   * @param city
+   * @param alias
+   * @param balAmt
+   */
+  protected void validateCustomerDetails(String custDesc, String custName,
+      String address, String mobile, String city, String alias, String balAmt)
+      throws Exception {
+
+    if (custName == null || custName.isEmpty()) {
+      throw new Exception("Please enter Customer Name");
+    }
+
+    if (alias == null || alias.isEmpty()) {
+      throw new Exception("Please enter Alias");
+    }
+
+    if (address == null || address.isEmpty()) {
+      throw new Exception("Please enter Address");
+    }
+
+    if (city == null || city.isEmpty()) {
+      throw new Exception("Please enter City");
+    }
+
+    if (mobile == null || mobile.isEmpty()) {
+      throw new Exception("Please enter Mobile Number");
+    }
+
+    if (balAmt == null || balAmt.isEmpty()) {
+      throw new Exception("Please enter Balance Amount");
+    }
+  }
 }

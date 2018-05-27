@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ahcareer.hbs.enums.ViewNameEnum;
+import com.ahcareer.hbs.persistance.CustomerDetails;
 import com.ahcareer.hbs.persistance.UomDetails;
 import com.ahcareer.hbs.persistance.UserDetails;
 import com.ahcareer.hbs.reqres.HbsRequest;
@@ -354,6 +355,133 @@ public class HbsController extends AbstractController {
     } catch (Exception e) {
       e.printStackTrace();
       String message = "Error while fetching uom details";
+      if (e.getCause() != null) {
+        message = e.getMessage();
+      }
+      modelMap.put(Constants.STATUS, Constants.ERROR);
+      baseResponse.setMessage(message);
+    }
+    return JSONUtils.toJson(modelMap);
+  }
+
+  /**
+   * Save Customer Details
+   * 
+   * @param jsonString
+   * @return
+   */
+  @RequestMapping(value = Constants.SAVE_CUSTOMER_DETAILS, method = RequestMethod.POST)
+  public @ResponseBody String saveCustomerDetails(
+      @RequestBody String jsonString) {
+    HbsResponse baseResponse = new HbsResponse();
+    this.logger.info("THIS IS INSIDE SAVE UOM");
+    try {
+      JsonObject jsonObject = (JsonObject) this.jsonParser.parse(jsonString);
+      this.logger.info("jsonObject..." + jsonObject);
+
+      String custName = jsonObject.get(Constants.CUST_NAME).getAsString();
+
+      this.hbsService.saveCustomerDetails(this.getRequest(jsonString));
+      baseResponse.setStatus(StatusKeys.SUCCESS);
+      baseResponse
+          .setMessage("Customer saved successfully with name " + custName);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      String message = "Error while saving Customer details";
+      if (e.getCause() == null) {
+        message = e.getMessage();
+      }
+      baseResponse.setStatus(StatusKeys.ERROR);
+      baseResponse.setMessage(message);
+    }
+    return JSONUtils.toJson(baseResponse);
+  }
+
+  /**
+   * Fetch All Customer Details
+   * 
+   * @param jsonString
+   * @return
+   */
+  @RequestMapping(value = Constants.FETCH_ALL_CUSTOMER_DETAILS, method = RequestMethod.POST)
+  public @ResponseBody String fetchAllCustomerDetails() {
+    HbsResponse baseResponse = new HbsResponse();
+    this.logger.info("THIS IS INSIDE FETCH ALL CUSTOMER DETAILS");
+    Map<String, Object> modelMap = new HashMap<>();
+    try {
+      List<CustomerDetails> customerDetailsList = this.hbsService
+          .fetchAllCustomerDetails();
+      baseResponse.setStatus(StatusKeys.SUCCESS);
+      modelMap.put(Constants.CUSTOMER_DETAILS, customerDetailsList);
+    } catch (Exception e) {
+      e.printStackTrace();
+      String message = "Error while fetching um details";
+      if (e.getCause() != null) {
+        message = e.getMessage();
+      }
+      baseResponse.setStatus(StatusKeys.ERROR);
+      baseResponse.setMessage(message);
+    }
+    return JSONUtils.toJson(modelMap);
+  }
+
+  /**
+   * Edit Customer Details
+   * 
+   * @param jsonString
+   * @return
+   */
+  @RequestMapping(value = Constants.EDIT_CUSTOMER_DETAILS, method = RequestMethod.POST)
+  public @ResponseBody String editCustomerDetails(
+      @RequestBody String jsonString) {
+    HbsResponse baseResponse = new HbsResponse();
+    this.logger.info("THIS IS INSIDE EDIT CUSTOMER DETAILS");
+    Map<String, Object> modelMap = new HashMap<>();
+    try {
+      JsonObject jsonObject = (JsonObject) this.jsonParser.parse(jsonString);
+      HbsRequest hbsRequest = new HbsRequest();
+      hbsRequest.setRequestData(jsonObject);
+      CustomerDetails customerDetails = this.hbsService
+          .fetchCustomerDetailsById(hbsRequest);
+      System.out.println("customerDetails..." + customerDetails);
+      modelMap.put(Constants.CUSTOMER_DETAILS, customerDetails);
+      modelMap.put(Constants.STATUS, Constants.SUCCESS);
+    } catch (Exception e) {
+      e.printStackTrace();
+      String message = "Error while fetching customer details";
+      if (e.getCause() != null) {
+        message = e.getMessage();
+      }
+      modelMap.put(Constants.STATUS, Constants.ERROR);
+      baseResponse.setMessage(message);
+    }
+    return JSONUtils.toJson(modelMap);
+  }
+
+  /**
+   * Delete Customer Details
+   * 
+   * @param jsonString
+   * @return
+   */
+  @RequestMapping(value = Constants.DELETE_CUSTOMER_DETAILS, method = RequestMethod.POST)
+  public @ResponseBody String deleteCustomerDetails(
+      @RequestBody String jsonString) {
+    HbsResponse baseResponse = new HbsResponse();
+    this.logger.info("THIS IS INSIDE DELETE CUSTOMER DETAILS");
+    Map<String, Object> modelMap = new HashMap<>();
+    try {
+      JsonObject jsonObject = (JsonObject) this.jsonParser.parse(jsonString);
+      HbsRequest hbsRequest = new HbsRequest();
+      hbsRequest.setRequestData(jsonObject);
+      String custName = jsonObject.get(Constants.CUST_NAME).getAsString();
+      this.hbsService.deleteCustomerDetailsById(hbsRequest);
+      modelMap.put(Constants.MESSAGE, custName + " deleted successfully");
+      modelMap.put(Constants.STATUS, Constants.SUCCESS);
+    } catch (Exception e) {
+      e.printStackTrace();
+      String message = "Error while deleting customer details";
       if (e.getCause() != null) {
         message = e.getMessage();
       }

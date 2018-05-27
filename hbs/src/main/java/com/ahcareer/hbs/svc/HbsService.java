@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ahcareer.hbs.dao.HbsDao;
+import com.ahcareer.hbs.persistance.CustomerDetails;
 import com.ahcareer.hbs.persistance.UomDetails;
 import com.ahcareer.hbs.persistance.UserDetails;
 import com.ahcareer.hbs.reqres.HbsRequest;
@@ -95,7 +96,7 @@ public class HbsService extends AbstractService {
     String uomId = jsonObject.get(Constants.UOM_ID).getAsString();
     String uomDesc = jsonObject.get(Constants.UOM_DESC).getAsString();
     String action = jsonObject.get(Constants.ACTION).getAsString();
-    String dbId = jsonObject.get(Constants.ID_UOM_DB_ID).getAsString();
+    String dbId = jsonObject.get(Constants.ID_DB_ID).getAsString();
 
     this.logger.info("action..." + action + "..dbId..." + dbId);
 
@@ -177,5 +178,114 @@ public class HbsService extends AbstractService {
     JsonObject jsonObject = (JsonObject) hbsRequest.getRequestData();
     String id = jsonObject.get(Constants.UOM_ID).getAsString();
     return this.hbsDao.fetchUomDetalsById(id);
+  }
+
+  /**
+   * Save Customer Details
+   * 
+   * @param request
+   * @throws Exception
+   */
+  public void saveCustomerDetails(HbsRequest request) throws Exception {
+
+    JsonObject jsonObject = (JsonObject) request.getRequestData();
+    this.logger.info("jsonObject..." + jsonObject);
+    String custName = jsonObject.get(Constants.CUST_NAME).getAsString();
+    String custDesc = jsonObject.get(Constants.CUST_DESC).getAsString();
+    String address = jsonObject.get(Constants.ADDRESS).getAsString();
+    String mobile = jsonObject.get(Constants.MOBILE).getAsString();
+    String city = jsonObject.get(Constants.CITY).getAsString();
+    String alias = jsonObject.get(Constants.ALIAS).getAsString();
+    String balAmt = jsonObject.get(Constants.BAL_AMT).getAsString();
+    String dbId = jsonObject.get(Constants.ID_DB_ID).getAsString();
+    String action = jsonObject.get(Constants.ACTION).getAsString();
+
+    this.logger.info("action..." + action + "..dbId..." + dbId);
+
+    this.validateCustomerDetails(custDesc, custName, address, mobile, city,
+        alias, balAmt);
+
+    List<CustomerDetails> customerDetailsList = this.hbsDao
+        .fetchAllCustomerDetailsByName(custName);
+
+    this.logger.info("uomDetailsList...." + customerDetailsList);
+    CustomerDetails details = new CustomerDetails();
+    if (action.equalsIgnoreCase(Constants.CREATE)) {
+      if (customerDetailsList != null && !customerDetailsList.isEmpty()) {
+        throw new Exception(
+            "Details already exits with Customer Name " + custName);
+      }
+
+      details.setId(this.getId());
+      details.setCustomerName(custName);
+      details.setAddress(address);
+      details.setAlias(alias);
+      details.setMobile(mobile);
+      details.setDesciption(custDesc);
+      details.setBalanceAmount(balAmt);
+      details.setCity(city);
+      details.setCreated(System.currentTimeMillis());
+      details.setCreatedBy(Constants.ADMIN);
+    } else {
+      details = this.hbsDao.fetchCustomerDetailsById(dbId);
+      if (!custName.equalsIgnoreCase(details.getCustomerName())) {
+        customerDetailsList = this.hbsDao
+            .fetchAllCustomerDetailsByName(custName);
+        if (customerDetailsList != null && !customerDetailsList.isEmpty()) {
+          throw new Exception(
+              "Details already exits with UOM Name " + custName);
+        }
+      }
+      details.setCustomerName(custName);
+      details.setAddress(address);
+      details.setAlias(alias);
+      details.setMobile(mobile);
+      details.setDesciption(custDesc);
+      details.setBalanceAmount(balAmt);
+      details.setCity(city);
+      details.setUpdated(System.currentTimeMillis());
+      details.setUpdatedBy(Constants.ADMIN);
+    }
+
+    this.logger.info("AFTER UPDATE..." + details);
+    this.hbsDao.saveCustomerDetails(details);
+
+  }
+
+  /**
+   * Fetch All Customer Details
+   * 
+   * @return
+   * @throws Exception
+   */
+  public List<CustomerDetails> fetchAllCustomerDetails() throws Exception {
+    return this.hbsDao.fecthAllCustomerDetails();
+  }
+
+  /**
+   * Fetch Customer Details By Id
+   * 
+   * @param hbsRequest
+   * @return
+   * @throws Exception
+   */
+  public CustomerDetails fetchCustomerDetailsById(HbsRequest hbsRequest)
+      throws Exception {
+    JsonObject jsonObject = (JsonObject) hbsRequest.getRequestData();
+    String dbId = jsonObject.get(Constants.ID_DB_ID).getAsString();
+    return this.hbsDao.fetchCustomerDetailsById(dbId);
+  }
+
+  /**
+   * Delete Customer Details By ID
+   * 
+   * @param hbsRequest
+   * @throws Exception
+   */
+  public void deleteCustomerDetailsById(HbsRequest hbsRequest)
+      throws Exception {
+    JsonObject jsonObject = (JsonObject) hbsRequest.getRequestData();
+    String dbId = jsonObject.get(Constants.ID_DB_ID).getAsString();
+    this.hbsDao.deteleCustomerDetailsById(dbId);
   }
 }

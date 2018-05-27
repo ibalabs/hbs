@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ahcareer.hbs.ctx.Options;
+import com.ahcareer.hbs.persistance.CustomerDetails;
 import com.ahcareer.hbs.persistance.UomDetails;
 import com.ahcareer.hbs.persistance.UserDetails;
 
@@ -126,5 +127,74 @@ public class HbsDao extends BaseDao implements Serializable {
     Criterion uomIdCriterion = Restrictions.eq(UomDetails.UOM_NAME, uomName);
     options.setCriterion(uomIdCriterion);
     return this.context.fetchObjects(UomDetails.class, options);
+  }
+
+  /**
+   * Fetch Customer Details By Customer Name
+   * 
+   * @param custName
+   * @return
+   * @throws Exception
+   */
+  public List<CustomerDetails> fetchAllCustomerDetailsByName(String custName)
+      throws Exception {
+    Options options = new Options();
+    Criterion custNameCriterion = Restrictions
+        .eq(CustomerDetails.C_CUSTOMER_NAME, custName);
+    options.setCriterion(custNameCriterion);
+    return this.context.fetchObjects(CustomerDetails.class, options);
+  }
+
+  /**
+   * fetch Customer Details By Id
+   * 
+   * @param dbId
+   * @return
+   * @throws Exception
+   */
+  public CustomerDetails fetchCustomerDetailsById(String dbId)
+      throws Exception {
+    Options options = new Options();
+    Criterion idCriterion = Restrictions.eq(CustomerDetails.C_ID, dbId);
+    options.setCriterion(idCriterion);
+    List<CustomerDetails> customerDetailsList = this.context
+        .fetchObjects(CustomerDetails.class, options);
+    if (customerDetailsList == null || customerDetailsList.isEmpty()) {
+      throw new Exception("No Details found to update or fetch");
+    }
+    return customerDetailsList.get(0);
+  }
+
+  /**
+   * Save Customer Details
+   * 
+   * @param details
+   * @throws Exception
+   */
+  public void saveCustomerDetails(CustomerDetails details) throws Exception {
+    this.context.saveOrUpdate(details);
+  }
+
+  /**
+   * Fetch All Customer Details
+   * 
+   * @return
+   * 
+   * @throws Exception
+   */
+  public List<CustomerDetails> fecthAllCustomerDetails() throws Exception {
+    Options options = new Options();
+    return this.context.fetchCreateObjects(CustomerDetails.class, options);
+  }
+
+  /**
+   * Delete Customer Details
+   * 
+   * @param dbId
+   * @throws Exception
+   */
+  public void deteleCustomerDetailsById(String dbId) throws Exception {
+    CustomerDetails customerDetails = this.fetchCustomerDetailsById(dbId);
+    this.context.delete(customerDetails);
   }
 }
