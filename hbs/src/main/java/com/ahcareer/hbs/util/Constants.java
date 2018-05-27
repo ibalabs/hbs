@@ -24,6 +24,9 @@ public interface Constants {
   String SHOW_PRODUCT_REPORTS_VIEW = "/productreports.html";
   String SHOW_REFERRAL_REPORTS_VIEW = "/referralreports.html";
   String SHOW_PRODUCT_COST_REPORTS_VIEW = "/productcostreports.html";
+  String SAVE_UOM = "/saveUom.html";
+  String FETCH_ALL_UOM_DETAILS = "/fetchAllUomDetails.html";
+  String EDIT_UOM_DETAILS = "/editUomDetails.html";
 
   String USER_NAME = "userName";
   String FIRST_NAME = "firstName";
@@ -34,4 +37,16 @@ public interface Constants {
   String LOGIN_PASSWORD = "LOGIN_PASSWORD";
   String LOGGED_USER_INFO = "LOGGED_USER_INFO";
   String SESSION_OBJECT = "SESSION_OBJECT";
+
+  String UOM_NAME = "uomName";
+  String UOM_DESC = "uomDesc";
+  String UOM_ID = "uomId";
+  String ACTION = "action";
+  String ID_UOM_DB_ID = "dbId";
+  String UOM_DETAILS = "UOM_DETAILS";
+  String STATUS = "status";
+  String SUCCESS = "SUCCESS";
+  String ERROR = "ERROR";
+  String CREATE = "CREATE";
+  String UPDATE = "UPDATE";
 }

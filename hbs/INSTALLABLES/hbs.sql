@@ -1,14 +1,15 @@
-CREATE TABLE unit_of_measure(
+CREATE TABLE hbs_unit_of_measure(
 id 					VARCHAR(100) 	NOT NULL  PRIMARY KEY
-,uom 				VARCHAR(200) 	UNIQUE NOT NULL
-,desrciption 		VARCHAR(500) 	NULL
+,uom_id 			VARCHAR(200) 	UNIQUE NOT NULL
+,uom_name			VARCHAR(200) 	UNIQUE NOT NULL
+,uom_desc	 		VARCHAR(500) 	NULL
 ,created_by 		VARCHAR(255) 	NOT NULL
 ,created 			BIGINT 			NOT NULL
 ,updated_by 		VARCHAR(255) 	NULL          
 ,updated 			BIGINT 			NOT NULL DEFAULT 0
 );
 
-CREATE TABLE product_master(
+CREATE TABLE hbs_product_master(
 id 					VARCHAR(100) 	NOT NULL PRIMARY KEY 
 ,product_name 		VARCHAR(500) 	NOT NULL UNIQUE
 ,uom_id 			VARCHAR(100) 	NOT NULL
@@ -21,9 +22,9 @@ id 					VARCHAR(100) 	NOT NULL PRIMARY KEY
 ,updated_by 		VARCHAR(255) 	NULL          
 ,updated 			BIGINT 			NOT NULL DEFAULT 0
 );
-ALTER TABLE product_master ADD FOREIGN KEY (uom_id) REFERENCES unit_of_measure(id); 
+ALTER TABLE hbs_product_master ADD FOREIGN KEY (uom_id) REFERENCES hbs_unit_of_measure(id); 
 
-CREATE TABLE customer_master(
+CREATE TABLE hbs_customer_master(
 id 					VARCHAR(100) 	NOT NULL PRIMARY KEY 
 ,customer_name		VARCHAR(100) 	NOT NULL
 ,alias 				VARCHAR(100) 	NULL
@@ -38,7 +39,7 @@ id 					VARCHAR(100) 	NOT NULL PRIMARY KEY
 ,updated 			BIGINT 			NOT NULL DEFAULT 0 
 );
 
-CREATE TABLE sales_invoice(
+CREATE TABLE hbs_sales_invoice(
 id 					 VARCHAR(100) 	NOT NULL PRIMARY KEY 
 ,cust_id			 VARCHAR(100) 	NOT NULL
 ,product_id 		 VARCHAR(100) 	NOT NULL
@@ -56,11 +57,11 @@ id 					 VARCHAR(100) 	NOT NULL PRIMARY KEY
 ,updated_by			 VARCHAR(255) 	NULL          
 ,updated 			 BIGINT 		NOT NULL DEFAULT 0 
 );
-ALTER TABLE sales_invoice ADD FOREIGN KEY (cust_id) REFERENCES customer_master(id);
-ALTER TABLE sales_invoice ADD FOREIGN KEY (product_id) REFERENCES product_master(id);
-ALTER TABLE sales_invoice ADD FOREIGN KEY (uom_id) REFERENCES unit_of_measure(id);
+ALTER TABLE hbs_sales_invoice ADD FOREIGN KEY (cust_id) REFERENCES hbs_customer_master(id);
+ALTER TABLE hbs_sales_invoice ADD FOREIGN KEY (product_id) REFERENCES hbs_product_master(id);
+ALTER TABLE hbs_sales_invoice ADD FOREIGN KEY (uom_id) REFERENCES hbs_unit_of_measure(id);
 
-CREATE TABLE reciepts(
+CREATE TABLE hbs_reciepts(
 id 					 VARCHAR(100) 	NOT NULL UNIQUE PRIMARY KEY 
 ,reciept_id 		 VARCHAR(100) 	NOT NULL 
 ,cust_name 			 VARCHAR(100)	NOT NULL
@@ -75,7 +76,7 @@ id 					 VARCHAR(100) 	NOT NULL UNIQUE PRIMARY KEY
 ,updated 			 BIGINT 		NOT NULL DEFAULT 0
 );
 
-CREATE TABLE sales_return(
+CREATE TABLE hbs_sales_return(
 id 					 VARCHAR(100) 	NOT NULL PRIMARY KEY 
 ,cust_id 			 VARCHAR(100) 	NOT NULL
 ,product_id 		 VARCHAR(100) 	NOT NULL
@@ -92,13 +93,13 @@ id 					 VARCHAR(100) 	NOT NULL PRIMARY KEY
 ,updated_by 		 VARCHAR(255) 	NULL          
 ,updated 			 BIGINT 		NOT NULL DEFAULT 0 
 );
-ALTER TABLE sales_return ADD FOREIGN KEY (cust_id) REFERENCES customer_master(id);
-ALTER TABLE sales_return ADD FOREIGN KEY (product_id) REFERENCES product_master(id);
-ALTER TABLE sales_return ADD FOREIGN KEY (uom_id) REFERENCES unit_of_measure(id);
+ALTER TABLE hbs_sales_return ADD FOREIGN KEY (cust_id) REFERENCES hbs_customer_master(id);
+ALTER TABLE hbs_sales_return ADD FOREIGN KEY (product_id) REFERENCES hbs_product_master(id);
+ALTER TABLE hbs_sales_return ADD FOREIGN KEY (uom_id) REFERENCES hbs_unit_of_measure(id);
 
-CREATE TABLE company(
+CREATE TABLE hbs_company(
 id 					VARCHAR(100) 	NOT NULL PRIMARY KEY 
-,company_name 		VARCHAR(200) 	NOT NULL
+,hbs_company_name 		VARCHAR(200) 	NOT NULL
 ,city		 		VARCHAR(100) 	NULL
 ,pincode 			VARCHAR(10) 	NULL
 ,created_by 		VARCHAR(255) 	NOT NULL

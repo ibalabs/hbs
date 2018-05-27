@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ahcareer.hbs.dao.CamsDao;
+import com.ahcareer.hbs.dao.HbsDao;
 import com.google.gson.JsonParser;
 
 /**
@@ -21,7 +21,7 @@ public abstract class AbstractService {
   protected final JsonParser jsonParser = new JsonParser();
 
   @Autowired(required = true)
-  protected CamsDao camsDao;
+  protected HbsDao hbsDao;
 
   /**
    * Get Id

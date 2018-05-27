@@ -1,6 +1,7 @@
 package com.ahcareer.hbs.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ahcareer.hbs.enums.ViewNameEnum;
+import com.ahcareer.hbs.persistance.UomDetails;
 import com.ahcareer.hbs.persistance.UserDetails;
 import com.ahcareer.hbs.reqres.HbsRequest;
 import com.ahcareer.hbs.reqres.HbsResponse;
@@ -269,6 +271,96 @@ public class HbsController extends AbstractController {
     return new ModelAndView(
         ViewNameEnum.SHOW_PRODUCT_COST_REPORTS_VIEW.getViewName(),
         new HashMap<>());
+  }
+
+  /**
+   * Save UOM Details
+   * 
+   * @param jsonString
+   * @return
+   */
+  @RequestMapping(value = Constants.SAVE_UOM, method = RequestMethod.POST)
+  public @ResponseBody String saveUOM(@RequestBody String jsonString) {
+    HbsResponse baseResponse = new HbsResponse();
+    this.logger.info("THIS IS INSIDE SAVE UOM");
+    try {
+      JsonObject jsonObject = (JsonObject) this.jsonParser.parse(jsonString);
+      this.logger.info("jsonObject..." + jsonObject);
+
+      String uomName = jsonObject.get(Constants.UOM_NAME).getAsString();
+
+      this.hbsService.saveUom(this.getRequest(jsonString));
+      baseResponse.setStatus(StatusKeys.SUCCESS);
+      baseResponse.setMessage("UOM saved successfully with name " + uomName);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      String message = "Error while saving user details";
+      if (e.getCause() == null) {
+        message = e.getMessage();
+      }
+      baseResponse.setStatus(StatusKeys.ERROR);
+      baseResponse.setMessage(message);
+    }
+    return JSONUtils.toJson(baseResponse);
+  }
+
+  /**
+   * Fetch All UOM Details
+   * 
+   * @param jsonString
+   * @return
+   */
+  @RequestMapping(value = Constants.FETCH_ALL_UOM_DETAILS, method = RequestMethod.POST)
+  public @ResponseBody String fetchAllUomDetails() {
+    HbsResponse baseResponse = new HbsResponse();
+    this.logger.info("THIS IS INSIDE FETCH ALL UOM DETAILS");
+    Map<String, Object> modelMap = new HashMap<>();
+    try {
+      List<UomDetails> uomDetailsList = this.hbsService.fetchAllUomDetails();
+      baseResponse.setStatus(StatusKeys.SUCCESS);
+      modelMap.put(Constants.UOM_DETAILS, uomDetailsList);
+    } catch (Exception e) {
+      e.printStackTrace();
+      String message = "Error while fetching um details";
+      if (e.getCause() != null) {
+        message = e.getMessage();
+      }
+      baseResponse.setStatus(StatusKeys.ERROR);
+      baseResponse.setMessage(message);
+    }
+    return JSONUtils.toJson(modelMap);
+  }
+
+  /**
+   * Edit UOM Details
+   * 
+   * @param jsonString
+   * @return
+   */
+  @RequestMapping(value = Constants.EDIT_UOM_DETAILS, method = RequestMethod.POST)
+  public @ResponseBody String editUomDetails(@RequestBody String jsonString) {
+    HbsResponse baseResponse = new HbsResponse();
+    this.logger.info("THIS IS INSIDE FETCH ALL UOM DETAILS");
+    Map<String, Object> modelMap = new HashMap<>();
+    try {
+      JsonObject jsonObject = (JsonObject) this.jsonParser.parse(jsonString);
+      HbsRequest hbsRequest = new HbsRequest();
+      hbsRequest.setRequestData(jsonObject);
+      UomDetails uomDetails = this.hbsService
+          .fetchAllUomDetailsById(hbsRequest);
+      modelMap.put(Constants.UOM_DETAILS, uomDetails);
+      modelMap.put(Constants.STATUS, Constants.SUCCESS);
+    } catch (Exception e) {
+      e.printStackTrace();
+      String message = "Error while fetching uom details";
+      if (e.getCause() != null) {
+        message = e.getMessage();
+      }
+      modelMap.put(Constants.STATUS, Constants.ERROR);
+      baseResponse.setMessage(message);
+    }
+    return JSONUtils.toJson(modelMap);
   }
 
   /**

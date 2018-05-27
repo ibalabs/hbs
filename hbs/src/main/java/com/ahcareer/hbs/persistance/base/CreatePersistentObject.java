@@ -18,7 +18,7 @@ public abstract class CreatePersistentObject implements Serializable {
   public static String C_CREATEDBY = "createdBy";
   public static String C_CREATED = "created";
 
-  private String id;
+  protected String id;
   private String createdBy;
   private long created;
 
